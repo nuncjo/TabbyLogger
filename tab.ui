@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>706</width>
+    <height>318</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="5" column="4">
+      <widget class="QComboBox" name="font_size_comboBox">
+       <item>
+        <property name="text">
+         <string>10</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>12</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>14</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>18</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>20</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>22</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>24</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>26</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>28</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>30</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>32</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>34</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>36</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>38</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>40</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>42</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Log path:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2" colspan="5">
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <widget class="QFontComboBox" name="fontComboBox"/>
+     </item>
+     <item row="5" column="5">
+      <widget class="QCheckBox" name="scroll_checkBox">
+       <property name="text">
+        <string>Scroll down</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0" colspan="7">
+      <widget class="QTextEdit" name="textEdit">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="acceptRichText">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLineEdit" name="search_lineEdit">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="placeholderText">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="QPushButton" name="clear_pushButton">
+       <property name="text">
+        <string>Clear Log File</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QPushButton" name="pause_pushButton">
+       <property name="text">
+        <string>Pause</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>textEdit</tabstop>
+  <tabstop>clear_pushButton</tabstop>
+  <tabstop>fontComboBox</tabstop>
+  <tabstop>font_size_comboBox</tabstop>
+  <tabstop>scroll_checkBox</tabstop>
+  <tabstop>lineEdit</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
