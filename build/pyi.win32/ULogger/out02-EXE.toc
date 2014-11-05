@@ -1,0 +1,10 @@
+('D:\\Dropbox\\python\\GitHub\\REPO\\TabbyLogger\\dist\\ULogger.exe',
+ False,
+ False,
+ None,
+ None,
+ [],
+ None,
+ True,
+ 0,
+ 1415217002L)
