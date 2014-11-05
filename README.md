@@ -12,6 +12,9 @@ PySide 1.2.2 : http://qt-project.org/wiki/PySide
 
 Pyhk : https://github.com/schurpf/pyhk (included)
 
+##Compiled version##
+https://sourceforge.net/projects/tabbylogger/
+
 
 
 
