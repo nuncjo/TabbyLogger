@@ -105,10 +105,7 @@ class pyhk:
 
     def isIDHotkey(self,hotkey):
         """Test if hotkey is coded in IDs"""
-        for key in hotkey:
-            if type(key) == str:
-                return False
-        return True
+        return all(type(key) != str for key in hotkey)
 
     def isHumanHotkey(self,hotkey):
         """Test if hotkey is coded human readable. Ex ALT F2"""
@@ -131,16 +128,12 @@ class pyhk:
         hotkeyList = []
 
         #convert everyting into ID,MID,MEID
-        if self.isIDHotkey(hotkey):
-            IDHotkey = hotkey
-        else:
-            IDHotkey = self.hotkey2ID(hotkey)
-
+        IDHotkey = hotkey if self.isIDHotkey(hotkey) else self.hotkey2ID(hotkey)
         IDHotkeyTemp = IDHotkey[:]
 
         #check if there is a MEID and create accorind hotkeyVariationList
         for Key in self.KeyID2MEID:
-            
+
             if self.KeyID2MEID[Key] in IDHotkeyTemp:
                 #merged hotkey in hotkey
                 #get MEID
@@ -154,7 +147,7 @@ class pyhk:
                 #store according MEID and KeyIDList
                 hotkeyVariationList.append(KeyIDVariationTemp)
 
-        if len(hotkeyVariationList) > 0:
+        if hotkeyVariationList:
             hotkeyVariationList.append(IDHotkeyTemp)
             #get all possible permutations
             hotkeyList = UniquePermutation(hotkeyVariationList)
@@ -206,12 +199,22 @@ class pyhk:
             if hotkey:
                 hotkeyList = self.getHotkeyList(hotkey)
                 try:
-                    UserHKFTemp = [[hotk, fun] for hotk, fun in self.UserHKF if not(hotk in hotkeyList)]
+                    UserHKFTemp = [
+                        [hotk, fun]
+                        for hotk, fun in self.UserHKF
+                        if hotk not in hotkeyList
+                    ]
+
                     self.UserHKF = UserHKFTemp[:]
                 except:
                     pass
                 try:
-                    UserHKFTemp = [[hotk, fun] for hotk, fun in self.UserHKFUp if not(hotk in hotkeyList)]
+                    UserHKFTemp = [
+                        [hotk, fun]
+                        for hotk, fun in self.UserHKFUp
+                        if hotk not in hotkeyList
+                    ]
+
                     self.UserHKFUp = UserHKFTemp[:]
                 except:
                     pass
@@ -249,31 +252,31 @@ class pyhk:
         """Check if hotkey is pressed down
             Hotkey is given as KeyID"""
 
-        try:            
+        try:        
             #make sure exact hotkey is pressed
-            if not(len(hotkey) == len(self.KeyDownID)):
+            if len(hotkey) != len(self.KeyDownID):
                 return  False
             for hotk in hotkey:
-                if not(hotk in self.KeyDownID):
+                if hotk not in self.KeyDownID:
                     return False
         except:
             return False
-        
+
         return True
 
     def OnKeyDown(self,event):
 
-        if not "mouse" in event.MessageName:
+        if "mouse" not in event.MessageName:
             #check for merged keys first
             eventID = event.KeyID
         else:
             eventID = self.mouseDown_eventMessage2MID[event.Message]
 
         #make sure key only gets presse once
-        if not(eventID in self.KeyDownID):
+        if eventID not in self.KeyDownID:
 
             self.KeyDownID.append(eventID)
-            
+
             #Add user hotkeys and functions
             for hk, fun in self.UserHKF:
                 if self.isHotkey(hk):
@@ -284,7 +287,7 @@ class pyhk:
      
     def OnKeyUp(self,event):
 
-        if not "mouse" in event.MessageName:
+        if "mouse" not in event.MessageName:
             eventID = event.KeyID
         else:
             eventID = self.mouseUp_eventMessage2MID[event.Message]
@@ -293,11 +296,11 @@ class pyhk:
         for hk, fun in self.UserHKFUp:
             if hk[0] == eventID:
                 fun()             
-        
-        
+
+
         try:
             self.KeyDownID.remove(eventID)
-            
+
         except:
             pass
         return True
@@ -484,13 +487,12 @@ class pyhk:
         160     1012     Shift (Lshift)
         161     1012     Shift (Rshift)"""
 
-        KeyID2MEID = {162:1010,
+        return {162:1010,
                       163:1010,
                       164:1011,
                       165:1011,
                       160:1012,
                       161:1012}
-        return KeyID2MEID
 
     def getHotkeyListNoSingleNoModifiers(self):
         """return a list of all hotkeys without single events and modifiers"""
@@ -504,13 +506,11 @@ class pyhk:
 
         for item in moreRid:
             getRid.append(item)
-        
+
         for gR in getRid:
             TempID2Key.pop(gR)
 
-        LTempID2Key = TempID2Key.values()
-
-        return LTempID2Key
+        return TempID2Key.values()
         
 
 #permutation functions needed for merged hotkeys
@@ -526,20 +526,18 @@ def UniquePermutation2(l1,l2):
 def UniquePermutation(li):
     """Return UP of a general list"""
     lcurrent = li[0]
-    depth = 0
-    for xl in li[1:]:
-        lcurrenttemp = list()
+    for depth, xl in enumerate(li[1:]):
+        lcurrenttemp = []
         lcurrenttemp = UniquePermutation2(lcurrent,xl)
 
         if depth > 0:
-            lcurrent = list()
+            lcurrent = []
             for item in lcurrenttemp:
                 item0 = list(item[0])
                 item0.append(item[1])
-                lcurrent.append(item0)                
+                lcurrent.append(item0)
         else:
-            lcurrent = lcurrenttemp[:]            
-        depth += 1
+            lcurrent = lcurrenttemp[:]
     return lcurrent    
 
 #class for thread
